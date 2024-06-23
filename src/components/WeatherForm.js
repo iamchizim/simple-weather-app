@@ -2,10 +2,9 @@ import React from "react";
 import { useState } from "react";
 
 const WeatherForm = (props) => {
-    const [inputValue, setInputValue] = useState(" ")
      const handleSubmit = (e) => {
         e.preventDefault()
-        setInputValue(inputValue)
+        props.setCity(inputValue)
      }
      return(
         <form onSubmit={handleSubmit}>
