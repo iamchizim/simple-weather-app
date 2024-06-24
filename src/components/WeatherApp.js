@@ -7,11 +7,6 @@ const WeatherApp = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  useEffect(() => {
-    if (city) {
-      fetchWeatherData(city);
-    }
-  });
 
   const fetchWeatherData = async (city) => {
     try {
@@ -30,22 +25,24 @@ const WeatherApp = () => {
       setWeatherData(data);
     } catch (error) {
       setError(error.message);
+      setWeatherData(null);
     } finally {
       setLoading(false);
     }
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (city.trim()) {
+  useEffect(() => {
+    if (city) {
       fetchWeatherData(city);
     }
-  };
+  }, [city]);
   return (
     <div>
       <WeatherForm setCity={setCity} />
       {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      {weatherData && <WeatherDisplay weatherData={weatherData} />}
+      {!loading && error && <p>Error: {error}</p>}
+      {!loading && !error && weatherData && (
+        <WeatherDisplay weatherData={weatherData} />
+      )}
     </div>
   );
 };
