@@ -5,14 +5,13 @@ const WeatherForm = (props) => {
   const [inputValue, setInputValue] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(inputValue.trim()){
-        props.setCity(inputValue.trim());
-        setInputValue("")
+    if (inputValue.trim()) {
+      props.setCity(inputValue.trim());
+      setInputValue("");
     }
-    
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="weather-form" onSubmit={handleSubmit}>
       <input
         type="text"
         value={inputValue}

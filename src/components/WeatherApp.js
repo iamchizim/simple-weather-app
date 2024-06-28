@@ -36,7 +36,7 @@ const WeatherApp = () => {
     }
   }, [city]);
   return (
-    <div>
+    <div className="weather-app">
       <WeatherForm setCity={setCity} />
       {loading && <p>Loading...</p>}
       {!loading && error && <p>Error: {error}</p>}

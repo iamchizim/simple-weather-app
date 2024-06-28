@@ -1,7 +1,12 @@
 import React from "react";
 const WeatherDisplay = ({ weatherData }) => {
   // Check if weatherData and its nested properties are defined
-  if (!weatherData || !weatherData.current || !weatherData.location || !weatherData.current.condition) {
+  if (
+    !weatherData ||
+    !weatherData.current ||
+    !weatherData.location ||
+    !weatherData.current.condition
+  ) {
     return <p>Weather data is not available.</p>; // Or render a loading spinner, etc.
   }
 
@@ -10,7 +15,7 @@ const WeatherDisplay = ({ weatherData }) => {
   const { name } = location;
 
   return (
-    <div>
+    <div className="weather-data">
       <h2>Weather in {name}</h2>
       <p>Temperature: {temp_c}°C</p>
       <p>Condition: {condition.text}</p>
